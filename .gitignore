@@ -1,0 +1,5 @@
+output_tech_data/
+raw_data/
+__pycache__/
+.env
+*.pyc
