@@ -1,13 +1,14 @@
 # Project information
-site_name: THD-Spatial-AI GitHub Template
+site_name: MERRA-2 Data Pipeline
 site_author: THD-Spatial-AI
 site_description: >-
-  Template repository for open source projects in the THD-Spatial-AI GitHub organisation
-site_url: https://THD-Spatial-AI.github.io/gitHub-template
+  Pipeline for downloading and processing NASA MERRA-2 reanalysis data for PV,
+  wind, biomass, and geothermal energy simulations
+site_url: https://THD-Spatial-AI.github.io/merra2-energy-pipeline
 
 # Repository
-repo_name: THD-Spatial/GitHub-Template
-repo_url: https://github.com/THD-Spatial-AI/gitHub-template
+repo_name: THD-Spatial-AI/merra2-energy-pipeline
+repo_url: https://github.com/THD-Spatial-AI/merra2-energy-pipeline
 edit_uri: edit/main/docs/
 
 # Theme configuration
@@ -114,13 +115,17 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - Checklist: getting-started/open-source-checklist.md
-  - Repository Naming: getting-started/repository-naming.md
-  - Documentation Setup: getting-started/documentation-setup.md
-  - Legal Sync: getting-started/legal-sync.md
-  - Branch Naming: getting-started/branch-naming.md
-  - Branch Rules: getting-started/branch-rules.md
-  - Commit Conventions: getting-started/commit-conventions.md
+  - Setup: getting-started/setup.md
+  - Usage: getting-started/usage.md
+  - Data Reference: reference/data.md
+  - Template Guides:
+      - Checklist: getting-started/open-source-checklist.md
+      - Repository Naming: getting-started/repository-naming.md
+      - Documentation Setup: getting-started/documentation-setup.md
+      - Legal Sync: getting-started/legal-sync.md
+      - Branch Naming: getting-started/branch-naming.md
+      - Branch Rules: getting-started/branch-rules.md
+      - Commit Conventions: getting-started/commit-conventions.md
 
 # Copyright
 copyright: |

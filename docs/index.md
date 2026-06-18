@@ -1,52 +1,51 @@
-# THD-Spatial-AI GitHub Template
+# MERRA-2 Data Pipeline
 
-Welcome to the THD-Spatial-AI GitHub Template documentation! This template helps group members create standardized, open-source ready repositories.
+Unified data pipeline for downloading and processing **NASA MERRA-2** reanalysis
+data for energy simulations — **PV, Wind, Biomass, and Geothermal**.
 
-## Quick Overview
+The pipeline downloads daily MERRA-2 files for a chosen country and year range,
+combines them into yearly NetCDF files, and (for biomass/geothermal) exports
+per-grid-point weather CSVs in the format required by **PySAM**.
 
-This template repository provides a complete starting point for open-sourcing projects under the THD-Spatial-AI organization. It includes essential files, guidelines, and a comprehensive checklist to ensure your project meets all requirements.
+## Highlights
 
-## What's Included
+- Four simulation types: `pv`, `wind`, `biomass`, `geothermal`
+- 28 European countries plus a combined Europe region
+- Resumable downloads — already-downloaded files are skipped
+- Yearly NetCDF output, plus PySAM-ready weather CSVs for biomass/geothermal
 
-- **Essential Documentation Templates**: LICENSE, README, CONTRIBUTING
-- **Open Source Checklist**: Step-by-step verification of requirements
-- **Git LFS Configuration**: For managing large data files
-- **MkDocs Setup**: For creating project documentation sites
-- **Repository Naming Guidelines**: Best practices for consistent naming
-- **Additional Document list**: Optional but useful files for project maintenance and community engagement
+## Quick start
 
-## Getting Started
+```bash
+# Install
+pip install -r requirements.txt
 
-1. **Use this template**: Click `Use this template -> Create a new repository` button on GitHub
+# Configure NASA EarthData credentials
+cp src/data_pipeline/.env.example src/data_pipeline/.env
+# edit the file with your username/password
 
-    ![Use this template button](assets/getting-started/creating-repo-from-template.png)
+# Run (PV for Germany, 2019)
+make pv 2019 germany
+```
 
-2. **Name your repository**: Follow the [Repository Naming Guidelines](getting-started/repository-naming.md)
-3. **Complete checklist**: Use [Open Source Checklist](getting-started/open-source-checklist.md) to track progress
-4. **Customize files**: Update all template files for your specific project
-5. **Make it public**: Once all requirements are met, publish your repository
+## Documentation
 
-## Key Requirements
+- [Setup](getting-started/setup.md) — environment, dependencies, and credentials
+- [Usage](getting-started/usage.md) — running the pipeline with Make or Python
+- [Data Reference](reference/data.md) — output structure, variables, and countries
 
-!!! warning "Before Going Public"
-    Your repository **must** include a [LICENSE](getting-started/open-source-checklist.md#license) file before it can be made public under the THD-Spatial-AI organization.
+## Project layout
 
-### Essential Files
-
-- **LICENSE** - Required for all public repositories
-- **README.md** - Project overview and documentation
-- **CONTRIBUTING.md** - Guidelines for contributors
-- **CODE_OF_CONDUCT.md** - Community standards
-
-### Data Management
-
-- **Git LFS** - Required for repositories with large data files
-
-## Next Steps
-
-- [Open Source Checklist](getting-started/open-source-checklist.md) - Complete all requirements
-- [Repository Naming Guidelines](getting-started/repository-naming.md) - Learn about naming conventions
-
-## Support
-
-For questions or issues with this template, please [open an issue](https://github.com/THD-Spatial-AI/github-template/issues) or contact the THD-Spatial-AI group administrators.
+```
+.
+├── src/
+│   └── data_pipeline/        # Python package (run as `python -m data_pipeline`)
+│       ├── __main__.py
+│       ├── config.py
+│       ├── countries.py
+│       ├── download.py
+│       └── combine.py
+├── Makefile
+├── requirements.txt
+└── README.md
+```
