@@ -1,6 +1,6 @@
 # MERRA-2 Data Pipeline for PV, Wind, Biomass, and Geothermal Simulations
 #
-# Usage (run from inside data_pipeline/):
+# Usage (run from the project root):
 #   make pv 2019 germany
 #   make pv 2019 2020 germany
 #   make biomass 2019 germany
@@ -15,8 +15,9 @@
 # Prefer the original conda env when present, otherwise fall back to python3.
 DEFAULT_PYTHON := $(HOME)/miniconda3/envs/pysamnrel/bin/python
 PYTHON ?= $(if $(wildcard $(DEFAULT_PYTHON)),$(DEFAULT_PYTHON),python3)
-PIPELINE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-PARENT_DIR := $(abspath $(PIPELINE_DIR)/..)
+# The package lives in src/data_pipeline; run `python -m data_pipeline` from src/.
+ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+PARENT_DIR := $(abspath $(ROOT_DIR)/src)
 
 # Extra options (e.g., OPTS="--verbose")
 OPTS ?=

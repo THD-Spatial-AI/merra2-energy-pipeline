@@ -23,27 +23,42 @@ pip install -r requirements.txt
 2. Copy the example env file and fill in your credentials:
 
 ```bash
-cp .env.example .env
+cp src/data_pipeline/.env.example src/data_pipeline/.env
 ```
 
-Edit `.env`:
+Edit `src/data_pipeline/.env`:
 
 ```
 EARTHDATA_USERNAME=your_username
 EARTHDATA_PASSWORD=your_password
-OUTPUT_DIR=./data_pipeline/output_tech_data
-RAW_DIR=./data_pipeline/raw_data
+OUTPUT_DIR=./output_tech_data
+RAW_DIR=./raw_data
+```
+
+## Project Layout
+
+```
+.
+├── src/
+│   └── data_pipeline/        # Python package (run as `python -m data_pipeline`)
+│       ├── __main__.py
+│       ├── config.py
+│       ├── countries.py
+│       ├── download.py
+│       └── combine.py
+├── Makefile
+├── requirements.txt
+└── README.md
 ```
 
 ## Usage
 
-Run from the **project root** directory (not from inside `data_pipeline/`).
+`make` targets are run from the **project root**. To call the package directly
+with Python, run from the `src/` directory (or set `PYTHONPATH=src`).
 
-### Using Make (from inside `data_pipeline/`)
+### Using Make (from the project root)
 
 ```bash
-cd data_pipeline
-
 # Single year
 make pv 2019 germany
 make wind 2019 germany
@@ -63,9 +78,11 @@ make list-countries
 make help
 ```
 
-### Using Python directly (from project root)
+### Using Python directly (from the `src/` directory)
 
 ```bash
+cd src
+
 # Single year
 python -m data_pipeline pv 2019 germany
 python -m data_pipeline wind 2019 germany
@@ -121,7 +138,7 @@ python -m data_pipeline geothermal 2015 2025 netherlands
 ## Output Structure
 
 ```
-data_pipeline/
+.
 ├── raw_data/                          # Raw MERRA-2 daily downloads
 │   ├── pv/germany/slv/
 │   ├── wind/germany/slv/
