@@ -1,5 +1,18 @@
+# Add files and directories to ignore in Git
+# You can find some language specific templates at https://github.com/github/gitignore
+
+# Project data and outputs
 output_tech_data/
 raw_data/
-__pycache__/
+
+# Environment / secrets
 .env
+
+# Python
+__pycache__/
 *.pyc
+.venv/
+venv/
+
+# Docs build
+site/
